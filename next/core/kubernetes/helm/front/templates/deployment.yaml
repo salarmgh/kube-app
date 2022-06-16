@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.customName }}
+  labels:
+    app: front
+    tier: front
+    asghar: akbar
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: front
+      tier: front
+      asghar: akbar
+  template:
+    metadata:
+      labels:
+        app: front
+        tier: front
+        asghar: akbar
+    spec:
+      containers:
+        - name: front
+          image: salarmgh/project:front
+          ports:
+            - containerPort: 3000

@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: image-processing
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: image-processing.anisa.lab
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: image-processing
+                port:
+                  number: 80

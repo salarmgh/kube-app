@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: image-processing
+    tier: backend
+    asghar: akbar
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: image-processing
+      tier: backend
+      asghar: akbar
+  template:
+    metadata:
+      labels:
+        app: image-processing
+        tier: backend
+        asghar: akbar
+    spec:
+      containers:
+        - name: backend
+          image: salarmgh/project:back
+          ports:
+            - containerPort: 8080
+          args: ["--http", "0:8080", "--processes", "4"]

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.customName }}
+  labels:
+    app: image-processing
+    tier: backend
+    asghar: akbar
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: image-processing
+      tier: backend
+      asghar: akbar
+  template:
+    metadata:
+      labels:
+        app: image-processing
+        tier: backend
+        asghar: akbar
+    spec:
+      containers:
+        - name: backend
+          image: salarmgh/project:back
+          ports:
+            - containerPort: 8080
+          args: ["--http", "0:8080", "--processes", "4"]

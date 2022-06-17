@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: registry.anisa.lab/back
+          image: "registry.anisa.lab/back:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8080
           args: ["--http", "0:8080", "--processes", "4"]
